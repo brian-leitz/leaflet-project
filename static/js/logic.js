@@ -12,9 +12,8 @@ let layer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 let earthquakes = L.layerGroup().addTo(myMap);
 // Create a function to loop through GeoJSON data and create markers for each earthquake in our selected data. 
 d3.json(queryUrl).then(function(data) {
-  L.geoJSON(data, {
-    pointToLayer: function(feature, latlng) {
-      return L.circleMarker(latlng, {
+  L.geoJSON(data,{pointToLayer: function(feature, latlng){
+      return L.circleMarker(latlng,{
         radius: feature.properties.mag * 5,
         fillColor: getColorDepth(feature.geometry.coordinates[2]),
         color: "#000",
